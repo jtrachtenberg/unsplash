@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    h1= title
+    form(name="unsplash-search", method="post")
+        div.input
+            span.label Search
+            input(type="text", name="keyword")
+        div.actions
+            input(type="submit", value="add")
