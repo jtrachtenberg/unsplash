@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const unsplashapi = require('./unsplashapi')
 const fetch = require("node-fetch");
+const app = require('../app');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -24,5 +25,13 @@ router.post('/search', (req,res) => {
         page: req.body.page,
         perpage: req.body.perpage
     }).then((results) => res.status(200).json(results))
+})
+router.post('/endpointtrigger', (req,res) => {
+    unsplashapi.endpointTrigger({
+        id: req.body.id
+    }).then((results) => {
+        //console.log(results)
+        res.status(200).json(results)
+    })
 })
 module.exports = router;
