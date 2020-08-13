@@ -3,6 +3,8 @@ const toJson = require('unsplash-js').toJson
 const Unsplash = require('unsplash-js').default
 
 const unsplash = new Unsplash({accessKey: "***REMOVED***"})
+const pexelAPI = "***REMOVED***"
+//https://www.pexels.com/api/documentation/
 
 module.exports = {
     search({keyword,page,perpage}) {
