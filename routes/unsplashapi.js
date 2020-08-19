@@ -10,6 +10,8 @@ module.exports = {
     search({keyword,page,perpage}) {
         console.log('api search call')
         console.log(keyword)
+        console.log(page)
+        console.log(perpage)
         return unsplash.search.photos(keyword, page, perpage).then(toJson)
     },
     async endpointTrigger({id}) {
@@ -22,7 +24,7 @@ module.exports = {
                 return resolve(dp)
             })
         )
-        console.log(retVal)
+        //console.log(retVal)
         return retVal
     }
 }

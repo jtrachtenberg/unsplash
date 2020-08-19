@@ -11,10 +11,10 @@ router.get('/', function(req, res, next) {
 router.post('/', (req,res) => {
     unsplashapi.search({
         keyword: req.body.keyword,
-        page: 1,
-        perpage: 10
+        page: req.body.page,
+        perpage: req.body.perpage
     }).then((results) => {
-        console.log(results)
+        //console.log(results)
         //console.log(res.json(results))
         res.status(200).send(results)
     })
