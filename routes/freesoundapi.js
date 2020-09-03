@@ -8,8 +8,6 @@ const playHost = host+'/apiv2/sounds/'
 module.exports = {
     async search({keyword, page}) {
         page = page||1
-        console.log('freesoundapi search call')
-        console.log(keyword)
         var retVal
         const url = searchHost+keyword+'&page='+page
         console.log(url)
@@ -21,7 +19,6 @@ module.exports = {
                     }
                 }).then(response => response.json())
                 .then(data => {
-                    console.log('!!!!!')
                     retVal = new Promise((resolve, reject) => resolve(data))
                 })
                 .catch(error => {
