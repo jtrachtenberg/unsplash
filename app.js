@@ -8,8 +8,17 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var unsplashRouter = require('./routes/unsplash')
 var freesoundRouter = require('./routes/freesound')
+const process = require('process');
 
 global.fetch = require("node-fetch");
+
+process.on('uncaughtException', (err, origin) => {
+  fs.writeSync(
+    process.stderr.fd,
+    `Caught exception: ${err}\n` +
+    `Exception origin: ${origin}`
+  );
+});
 
 var app = express();
 
@@ -42,7 +51,11 @@ app.use('/freesound/play', freesoundRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
+process.on('uncaughtException', function (exception) {
+  console.log(exception); // to see your exception details in the console
+  // if you are on production, maybe you can send the exception details to your
+  // email as well ?
+});
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
