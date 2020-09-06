@@ -8,8 +8,17 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var unsplashRouter = require('./routes/unsplash')
 var freesoundRouter = require('./routes/freesound')
-
+const fs = require('fs');
 const process = require('process');
+
+var util = require('util');
+var log_file = fs.createWriteStream(__dirname + '/debug.log', {flags : 'w'});
+var log_stdout = process.stdout;
+
+console.log = function(d) { //
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
 
 global.fetch = require("node-fetch");
 
