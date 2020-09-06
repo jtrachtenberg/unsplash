@@ -8,17 +8,51 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var unsplashRouter = require('./routes/unsplash')
 var freesoundRouter = require('./routes/freesound')
+
 const process = require('process');
 
 global.fetch = require("node-fetch");
 
 process.on('uncaughtException', (err, origin) => {
+  const fs = require('fs');
   fs.writeSync(
     process.stderr.fd,
     `Caught exception: ${err}\n` +
     `Exception origin: ${origin}`
   );
 });
+
+function errorHandler (err, req, res, next) {
+  res.status(500)
+  res.render('error', { error: err })
+
+  var nodemailer = require('nodemailer');
+
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'fellowrover@gmail.com',
+      pass: 'J032868l'
+    }
+  });
+  
+  var mailOptions = {
+    from: 'fellowrover@gmail.com',
+    to: 'j.trachtenberg@gmail.com',
+    subject: 'unsplash error',
+    text: err.message
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+
+
+}
 
 var app = express();
 
@@ -57,14 +91,6 @@ process.on('uncaughtException', function (exception) {
   // email as well ?
 });
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+app.use(errorHandler);
 
 module.exports = app;
