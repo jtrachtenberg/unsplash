@@ -6,13 +6,16 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "aws-sdk": "^2.751.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "express": "~4.16.1",
+    "gyp": "^0.5.0",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.11",
     "web-audio-api": "^0.2.2"
   },
