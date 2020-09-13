@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var unsplashRouter = require('./routes/unsplash')
 var freesoundRouter = require('./routes/freesound')
+var awsRouter = require('./routes/aws')
 const fs = require('fs');
 const process = require('process');
 
@@ -35,6 +36,8 @@ function errorHandler (err, req, res, next) {
   res.status(500)
   res.render('error', { error: err })
 
+  console.log('!!!!')
+  console.log(err)
   var nodemailer = require('nodemailer');
 
   var transporter = nodemailer.createTransport({
@@ -88,7 +91,8 @@ app.use('/unsplash/endpointtrigger',unsplashRouter);
 app.use('/freesound', freesoundRouter);
 app.use('/freesound/search', freesoundRouter);
 app.use('/freesound/play', freesoundRouter);
-
+app.use('/aws', awsRouter)
+app.use('/aws/upload', awsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
