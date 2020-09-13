@@ -3,7 +3,7 @@
     var freesound = function () {        
         var authHeader = '';
         var clientId = 'gPe3QNnbNCqRQYjdgwkP';
-        var clientSecret = '***REMOVED***';
+        var clientSecret = '7hAy4HtMtOFDTOsTVMho7lp4wiu7EIOOevHdWHVb';
         var host = 'freesound.org';
 
         var uris = {

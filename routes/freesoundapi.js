@@ -1,5 +1,5 @@
-//const Freesound = require('./freesoundmod')
-const token = "***REMOVED***"
+require('dotenv').config()
+const token = process.env.freesoundToken
 const authHeader = `Token ${token}`
 const host = "https://freesound.org"
 const searchHost = `https://freesound.org/apiv2/search/text/?token=${token}&format=json&fields=id,name,description,previews,url,username&query=`

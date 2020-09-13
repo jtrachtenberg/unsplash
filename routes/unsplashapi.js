@@ -1,9 +1,10 @@
 //import Unsplash from 'unsplash-js'
 const toJson = require('unsplash-js').toJson
 const Unsplash = require('unsplash-js').default
+require('dotenv').config()
 
-const unsplash = new Unsplash({accessKey: "***REMOVED***"})
-const pexelAPI = "***REMOVED***"
+const unsplash = new Unsplash({accessKey: process.env.UnsplashAccessKey})
+const pexelAPI = process.env.pexelAPIKey
 //https://www.pexels.com/api/documentation/
 
 module.exports = {
