@@ -43,14 +43,14 @@ function errorHandler (err, req, res, next) {
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'fellowrover@gmail.com',
-      pass: 'J032868l'
+      user: process.env.MAIL_SENDER,
+      pass: process.env.MAIN_PW
     }
   });
   
   var mailOptions = {
-    from: 'fellowrover@gmail.com',
-    to: 'j.trachtenberg@gmail.com',
+    from: process.env.MAIL_SENDER,
+    to: process.env.MAIL_TO,
     subject: 'unsplash error',
     text: err.message
   };
